@@ -1,0 +1,118 @@
+--// DUEL WARPER MINI //--
+--// Roblox LocalScript //--
+
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+
+-- GUI
+local gui = Instance.new("ScreenGui")
+gui.Name = "DuelWarperMini"
+gui.ResetOnSpawn = false
+gui.Parent = player:WaitForChild("PlayerGui")
+
+-- MAIN
+local main = Instance.new("Frame")
+main.Size = UDim2.new(0, 250, 0, 120)
+main.Position = UDim2.new(0.5, -125, 0.5, -60)
+main.BackgroundColor3 = Color3.fromRGB(18,18,24)
+main.BackgroundTransparency = 0.2
+main.BorderSizePixel = 0
+main.Active = true
+main.Draggable = true
+main.Parent = gui
+
+local corner = Instance.new("UICorner")
+corner.CornerRadius = UDim.new(0,14)
+corner.Parent = main
+
+local stroke = Instance.new("UIStroke")
+stroke.Thickness = 1.5
+stroke.Color = Color3.fromRGB(120,200,255)
+stroke.Transparency = 0.15
+stroke.Parent = main
+
+-- TITLE
+local title = Instance.new("TextLabel")
+title.Size = UDim2.new(1,0,0,35)
+title.Position = UDim2.new(0,0,0,5)
+title.BackgroundTransparency = 1
+title.Text = "❄ Duel Warper"
+title.Font = Enum.Font.GothamBold
+title.TextSize = 20
+title.TextColor3 = Color3.fromRGB(220,240,255)
+title.Parent = main
+
+-- HOLDER
+local holder = Instance.new("Frame")
+holder.Size = UDim2.new(1,-20,0,40)
+holder.Position = UDim2.new(0,10,0,55)
+holder.BackgroundColor3 = Color3.fromRGB(35,35,45)
+holder.BackgroundTransparency = 0.15
+holder.BorderSizePixel = 0
+holder.Parent = main
+
+local holderCorner = Instance.new("UICorner")
+holderCorner.CornerRadius = UDim.new(0,10)
+holderCorner.Parent = holder
+
+local holderStroke = Instance.new("UIStroke")
+holderStroke.Color = Color3.fromRGB(120,200,255)
+holderStroke.Thickness = 1
+holderStroke.Transparency = 0.2
+holderStroke.Parent = holder
+
+-- TEXT
+local label = Instance.new("TextLabel")
+label.Size = UDim2.new(0.7,0,1,0)
+label.Position = UDim2.new(0,10,0,0)
+label.BackgroundTransparency = 1
+label.Text = "❄ Warp Player"
+label.Font = Enum.Font.GothamSemibold
+label.TextSize = 15
+label.TextColor3 = Color3.fromRGB(240,240,240)
+label.TextXAlignment = Enum.TextXAlignment.Left
+label.Parent = holder
+
+-- TOGGLE
+local toggle = Instance.new("TextButton")
+toggle.Size = UDim2.new(0,42,0,20)
+toggle.Position = UDim2.new(1,-52,0.5,-10)
+toggle.BackgroundColor3 = Color3.fromRGB(60,60,70)
+toggle.Text = ""
+toggle.AutoButtonColor = false
+toggle.Parent = holder
+
+local toggleCorner = Instance.new("UICorner")
+toggleCorner.CornerRadius = UDim.new(1,0)
+toggleCorner.Parent = toggle
+
+local circle = Instance.new("Frame")
+circle.Size = UDim2.new(0,16,0,16)
+circle.Position = UDim2.new(0,2,0.5,-8)
+circle.BackgroundColor3 = Color3.fromRGB(255,255,255)
+circle.Parent = toggle
+
+local circleCorner = Instance.new("UICorner")
+circleCorner.CornerRadius = UDim.new(1,0)
+circleCorner.Parent = circle
+
+-- LOGIC
+local enabled = false
+
+toggle.MouseButton1Click:Connect(function()
+	enabled = not enabled
+
+	if enabled then
+		toggle.BackgroundColor3 = Color3.fromRGB(80,170,255)
+		circle.Position = UDim2.new(1,-18,0.5,-8)
+
+		local target = workspace:FindFirstChild("CATVALERA90")
+
+		if target then
+			target:Destroy()
+		end
+	else
+		toggle.BackgroundColor3 = Color3.fromRGB(60,60,70)
+		circle.Position = UDim2.new(0,2,0.5,-8)
+	end
+end)
